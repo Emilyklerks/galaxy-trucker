@@ -1,7 +1,7 @@
 const buildingTileAvailableTexture = PIXI.Texture.from('src/assets/empty-tile-available.png');
 
 const mouseoverShipTile = (eventData, sprite, hoveredTile) => {
-    console.log(eventData);
+    console.log('mouseover ship tile');
     console.log('current hovered tile: ', hoveredTile);
     console.log('current Dragged part: ', currentDraggedShipPart)
 
@@ -20,6 +20,7 @@ const drawShipTileMap = (shipTileMap) => {
     const SPRITE_HEIGHT = 50;
 
     const container = new PIXI.Container();
+    container.interactive = false;
 
     console.log('Drawing ship tile map ', shipTileMap1);
     

@@ -23,7 +23,9 @@ function onDragEnd(eventData, draggedShipPart, sprite) {
     // set the interaction data to null
     sprite.data = null;
 
-    currentHoveredTile.shipPart = draggedShipPart;
+    if (currentHoveredTile) {
+        currentHoveredTile.shipPart = draggedShipPart;
+    }
 
     currentDraggedShipPart = null;
 }
@@ -48,6 +50,7 @@ const drawOfferedShipTiles = (shipTiles) => {
     const SPRITE_HEIGHT = 50;
     
     const container = new PIXI.Container();
+    container.interactive = false;
     console.log('Drawing shipTiles: ', shipTiles);
     
     shipTiles.forEach((tile, index) => {

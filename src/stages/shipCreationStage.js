@@ -10,8 +10,8 @@ const renderShipCreationStage = () => {
         engine1()
     ];
 
-    app.ticker.add((delta) => {
-        drawShipTileMap(currentShipTileMap);
-        drawOfferedShipTiles(offeredShipTiles);
-    });
+    
+    drawShipTileMap(currentShipTileMap);
+    drawOfferedShipTiles(offeredShipTiles);
+    
 }
