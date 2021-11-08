@@ -1,8 +1,8 @@
+let currentDraggedShipPart = null;
+let currentHoveredTile = null;
+let currentShipTileMap = shipTileMap1;
+
 const renderShipCreationStage = () => {
-
-    const currentShipTileMap = shipTileMap1;
-
-    drawShipTileMap(currentShipTileMap);
 
     const offeredShipTiles = [
         connector1(),
@@ -10,5 +10,8 @@ const renderShipCreationStage = () => {
         engine1()
     ];
 
-    drawOfferedShipTiles(offeredShipTiles);
+    app.ticker.add((delta) => {
+        drawShipTileMap(currentShipTileMap);
+        drawOfferedShipTiles(offeredShipTiles);
+    });
 }

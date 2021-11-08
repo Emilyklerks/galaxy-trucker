@@ -1,25 +1,34 @@
-function onDragStart(event)
-{
+
+
+function onDragStart(event, draggedShipPart, sprite) {
     // store a reference to the data
     // the reason for this is because of multitouch
     // we want to track the movement of this particular touch
-    this.data = event.data;
-    this.alpha = 0.5;
-    this.dragging = true;
+    
+    console.log('onDragStart', this);
+    console.log(event);
+    console.log(sprite);
+    sprite.data = event.data;
+    sprite.alpha = 0.5;
+    sprite.dragging = true;
+
+    currentDraggedShipPart = draggedShipPart;
 }
 
-function onDragEnd()
-{
-    this.alpha = 1;
+function onDragEnd(eventData, draggedShipPart, sprite) {
+    sprite.alpha = 1;
 
-    this.dragging = false;
+    sprite.dragging = false;
 
     // set the interaction data to null
-    this.data = null;
+    sprite.data = null;
+
+    currentHoveredTile.shipPart = draggedShipPart;
+
+    currentDraggedShipPart = null;
 }
 
-function onDragMove()
-{
+function onDragMove() {
     if (this.dragging)
     {
         var newPosition = this.data.getLocalPosition(this.parent);
@@ -57,13 +66,13 @@ const drawOfferedShipTiles = (shipTiles) => {
 
         sprite
             // events for drag start
-            .on('mousedown', onDragStart)
-            .on('touchstart', onDragStart)
+            .on('mousedown', (eventData) => onDragStart(eventData, tile, sprite))
+            .on('touchstart', (eventData) => onDragStart(eventData, tile, sprite))
             // events for drag end
-            .on('mouseup', onDragEnd)
-            .on('mouseupoutside', onDragEnd)
-            .on('touchend', onDragEnd)
-            .on('touchendoutside', onDragEnd)
+            .on('mouseup', (eventData) => onDragEnd(eventData, tile, sprite))
+            .on('mouseupoutside', (eventData) => onDragEnd(eventData, tile, sprite))
+            .on('touchend', (eventData) => onDragEnd(eventData, tile, sprite))
+            .on('touchendoutside', (eventData) => onDragEnd(eventData, tile, sprite))
             // events for drag move
             .on('mousemove', onDragMove)
             .on('touchmove', onDragMove);
