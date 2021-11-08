@@ -1,17 +1,16 @@
-
-const _connector1 = {
+const _connector2 = {
     type: SHIP_PART_TYPES.CONNECTOR,
     capacity: 0,
     remainingCapacity: 0,
     connectors: {
         left: true,
-        right: true,
+        right: false,
         up: true,
         down: true,
     },
-    texture: 'connector1.png'
+    texture: 'connector2.png'
 }
 
-const connector1 = () => ({
-    ..._connector1
+const connector2 = () => ({
+    ..._connector2
 });

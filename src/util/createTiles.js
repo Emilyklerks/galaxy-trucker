@@ -6,7 +6,7 @@ const emptyTile = {
 
 const startingTile = {
     isBuildingTile: true,
-    shipPart: connector1
+    shipPart: connector1()
 }
 
 // TODO: add arguments to configure starting tile and shape

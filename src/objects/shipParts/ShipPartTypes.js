@@ -1,3 +1,4 @@
 const SHIP_PART_TYPES = {
-    CONNECTOR: 'connector'
+    CONNECTOR: 'connector',
+    ENGINE: 'engine',
 }
