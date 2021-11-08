@@ -13,12 +13,10 @@ const drawShipTileMap = (shipTileMap) => {
             const locX = X_START + x * 10;
             const locY = Y_START + y * 10;
             
-            const texture = PIXI.Texture.from(`../assets/${tile.texture || 'empty-tile.png'}`);
-            const sprite = PIXI.Sprite(texture);
+            const sprite = PIXI.Sprite.from(`src/assets/${tile.texture || 'empty-tile.png'}`);
             sprite.x = locX;
             sprite.y = locY;
             container.addChild(sprite);
-            
         });
     });
 

@@ -1,0 +1,24 @@
+{
+  "name": "galaxy-trucker",
+  "version": "1.0.0",
+  "description": "Start:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emilyklerks/galaxy-trucker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Emilyklerks/galaxy-trucker/issues"
+  },
+  "homepage": "https://github.com/Emilyklerks/galaxy-trucker#readme",
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
+}
