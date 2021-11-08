@@ -1,1 +1,3 @@
-# galaxy-trucker
+Start:
+
+npx serve
