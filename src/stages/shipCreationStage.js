@@ -1,5 +1,5 @@
-let currentDraggedShipPart = null;
-let currentHoveredTile = null;
+let currentSelectedShipPart = null;
+let currentSelectedTile = null;
 let currentShipTileMap = shipTileMap1;
 
 const renderShipCreationStage = () => {
@@ -12,6 +12,6 @@ const renderShipCreationStage = () => {
 
     
     drawShipTileMap(currentShipTileMap);
-    drawOfferedShipTiles(offeredShipTiles);
+    drawOfferedShipParts(offeredShipTiles);
     
 }

@@ -1,14 +1,34 @@
 const buildingTileAvailableTexture = PIXI.Texture.from('src/assets/empty-tile-available.png');
+const buildintTileEmptyTexture = PIXI.Texture.from('src/assets/empty-tile.png'); 
 
-const mouseoverShipTile = (eventData, sprite, hoveredTile) => {
-    console.log('mouseover ship tile');
-    console.log('current hovered tile: ', hoveredTile);
-    console.log('current Dragged part: ', currentDraggedShipPart)
+const onClickShipTile = (eventData, sprite, tile) => {
+    console.log('on click ship tile', tile);
+    console.log('currentSelectedTile', currentSelectedTile);
+    console.log('currentSelectedShipPart', currentSelectedShipPart);;
 
-    currentHoveredTile = hoveredTile;
+    currentSelectedTile = tile;
 
-    if (currentDraggedShipPart && hoveredTile.isBuildingTile) {
+    if (currentSelectedShipPart && tile.isBuildingTile) {
         sprite.texture = buildingTileAvailableTexture;
+    }
+
+    if (currentSelectedShipPart && currentSelectedTile) {
+        console.log('setting ship part');
+        tile.shipPart = currentSelectedShipPart;
+        sprite.texture = PIXI.Texture.from(`src/assets/${tile?.shipPart?.texture || 'empty-tile.png'}`);
+    }
+}
+
+const onMouseOverShipTile = (eventData, sprite, tile) => {
+    if (currentSelectedShipPart && tile.isBuildingTile && !tile.shipPart) {
+        sprite.texture = buildingTileAvailableTexture;
+    }
+}
+
+const onMouseOutShipTile= (eventData, sprite, tile) => {
+    if (tile.isBuildingTile && tile.shipPart === null) {
+        console.log('resetting tile to blue', tile);
+        sprite.texture = buildintTileEmptyTexture;
     }
 }
 
@@ -37,8 +57,11 @@ const drawShipTileMap = (shipTileMap) => {
 
             // TODO: only make tiles interactive that can still be built on
             sprite.interactive = true;
-            sprite.mouseover = (eventData) => mouseoverShipTile(eventData, sprite, tile);
-            // sprite.scale.set('1, 1');
+            sprite
+                .on('mousedown', (eventData) => onClickShipTile(eventData, sprite, tile))
+                .on('mouseover', (eventData) => onMouseOverShipTile(eventData, sprite, tile))
+                .on('mouseout', (eventData) => onMouseOutShipTile(eventData, sprite, tile));
+
             container.addChild(sprite);
         });
     });
